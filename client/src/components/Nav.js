@@ -1,30 +1,75 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { Link } from 'react-router-dom'
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPaw } from '@fortawesome/free-solid-svg-icons'
 import { css } from '@emotion/css'
+import styled from '@emotion/styled'
 
 function NavBar() {
-    const [activeItem, setActiveItem] = useState('')
-
-    const itemClickHandler = (e, {name}) => setActiveItem(name)
 
     return (
-        <div css={NavContainer}>
-            <div>
+        <NavContainer>
+            <ButtonContainer>
+                <Link to="/">
+                    <FontAwesomeIcon className={IconStyle} icon={faPaw} name='home'></FontAwesomeIcon>
+                </Link>
+                <NavHeader>Woofer</NavHeader>
                 <div>
-                    <button name='home' active={activeItem === 'home'} onClick={itemClickHandler}>Home</button>
+                    <Link className={AltLinks} name='login' to="/login">Login</Link>
+                    <Link className={AltLinks} name='register' to="/register">Register</Link>
                 </div>
-                <div>
-                    <button name='login' active={activeItem === 'login'} onClick={itemClickHandler}>Login</button>
-                    <button name='register' active={activeItem === 'register'} onClick={itemClickHandler}>Register</button>
-                </div>
-            </div>
-        </div>
+            </ButtonContainer>
+        </NavContainer>
     )
 }
 
-const NavContainer = css`
+const NavContainer = styled.div`
+    padding-top: 1rem;
+    width: 100%;
+    height: auto;
+`
+
+const ButtonContainer = styled.div`
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
+    align-content: center;
+    text-align: center;
+    flex-direction: row;
+`
+
+const IconStyle = css`
+    color: #fff;
+    background-color: #334d4d;
+    font-size: 2.2rem;
+    cursor: pointer;
+    text-align: center;
+
+    &:hover {
+    color: #8cd9b3;
+    }
+`
+
+const NavHeader = styled.p`
+    font-size: 2.5rem;
+    font-family: sans-serif;
+    padding-left: 8rem;
+    color: #fff;
+    margin: 0;
+    /* margin-bottom: .2rem; */
+`
+
+const AltLinks = css`
+    padding: 0px 8px;
+    outline: none;
+    text-decoration: none;
+    font-family: sans-serif;
+    font-size: 27px;
+    color: #fff;
+
+    &:hover {
+    color: #8cd9b3;
+    }
 `
 
 export default NavBar
